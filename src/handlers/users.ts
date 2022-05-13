@@ -3,12 +3,13 @@ import { User, UserStore } from "../models/user";
 import jwt from "jsonwebtoken";
 
 const store = new UserStore();
+const tokenSecret = process.env.TOKEN_SECRET as string;
 
 const index = async (req: express.Request, res: express.Response) => {
   try {
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(" ")[1];
-    jwt.verify(token, process.env.TOKEN_SECRET as string);
+    jwt.verify(token, tokenSecret);
   } catch (err) {
     res.status(401);
     res.json("Access denied, invalid token");
@@ -30,9 +31,10 @@ const create = async (req: express.Request, res: express.Response) => {
     lastname: req.body.lastname,
     passworddigest: req.body.passworddigest,
   };
+  
   try {
     const newUser = await store.create(user);
-    let token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET as string);
+    let token = jwt.sign({ user: newUser }, tokenSecret);
     res.json(token);
   } catch (err) {
     res.status(400);
@@ -44,7 +46,7 @@ const show = async (req: express.Request, res: express.Response) => {
   try {
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(" ")[1];
-    jwt.verify(token, process.env.TOKEN_SECRET as string);
+    jwt.verify(token, tokenSecret);
   } catch (err) {
     res.status(401);
     res.json("Access denied, invalid token");
@@ -60,10 +62,10 @@ const show = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const product_routes = (app: express.Application) => {
+const userRoutes = (app: express.Application) => {
   app.get("/users", index);
   app.post("/users", create);
   app.get("/users", show);
 };
 
-export default product_routes;
+export default userRoutes;

@@ -1,6 +1,9 @@
 import client from "../database";
 import bcrypt from "bcrypt";
 
+const saltRounds = process.env.SALT_ROUNDS as string;
+const pepper = process.env.BCRYPT_PASSWORD as string;
+
 export type User = {
   id?: number;
   firstname: string;
@@ -39,7 +42,10 @@ export class UserStore {
       const connect = await client.connect();
       const sql =
         "INSERT INTO users (firstname, lastname, passworddigest) VALUES ($1, $2, $3) RETURNING *";
-      const hash = bcrypt.hashSync(u.password + pepper, parseInt(saltRounds));
+      const hash = bcrypt.hashSync(
+        u.passworddigest + pepper,
+        parseInt(saltRounds)
+      );
       const result = await connect.query(sql, [u.firstname, u.lastname, hash]);
       const user = {
         id: result.rows[0].id,
