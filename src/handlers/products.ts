@@ -6,8 +6,12 @@ const store = new ProductStore();
 const tokenSecret = process.env.TOKEN_SECRET as string;
 
 const index = async (req: express.Request, res: express.Response) => {
-  const products = await store.index();
-  res.json(products);
+  try {
+    const products = await store.index();
+    res.json(products);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const create = async (req: express.Request, res: express.Response) => {
@@ -36,14 +40,18 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const show = async (req: express.Request, res: express.Response) => {
-  const product = await store.show(req.body.id);
-  res.json(product);
+  try {
+    const product = await store.show(req.body.id);
+    res.json(product);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const productRoutes = (app: express.Application) => {
   app.get("/products", index);
   app.post("/products", create);
-  app.get("/products", show);
+  app.get("/products/:id", show);
 };
 
 export default productRoutes;

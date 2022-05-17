@@ -21,7 +21,7 @@ const create = async (req: express.Request, res: express.Response) => {
       status: req.body.status,
       uid: req.body.uid,
     };
-    const newOrder = await store.create(req.body.uid);
+    const newOrder = await store.create(order);
     res.json(newOrder);
   } catch (err) {
     res.status(400);
@@ -45,7 +45,7 @@ const addProduct = async (req: express.Request, res: express.Response) => {
   }
 
   try {
-    const added = await store.addProduct(quantity, orderId, productId);
+    const added = await store.addProduct(orderId, quantity, productId);
     res.json(added);
   } catch (err) {
     res.status(400);

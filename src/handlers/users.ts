@@ -20,21 +20,20 @@ const index = async (req: express.Request, res: express.Response) => {
     const users = await store.index();
     res.json(users);
   } catch (err) {
-    res.status(400);
     res.json(err);
   }
 };
 
 const create = async (req: express.Request, res: express.Response) => {
-  const user: User = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    passworddigest: req.body.passworddigest,
-  };
-  
   try {
+    const user: User = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password,
+    };
     const newUser = await store.create(user);
-    let token = jwt.sign({ user: newUser }, tokenSecret);
+    const token = jwt.sign({ user: newUser }, tokenSecret);
     res.json(token);
   } catch (err) {
     res.status(400);
@@ -65,7 +64,7 @@ const show = async (req: express.Request, res: express.Response) => {
 const userRoutes = (app: express.Application) => {
   app.get("/users", index);
   app.post("/users", create);
-  app.get("/users", show);
+  app.get("/users/:id", show);
 };
 
 export default userRoutes;

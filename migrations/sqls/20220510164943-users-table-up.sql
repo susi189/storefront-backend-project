@@ -1,1 +1,1 @@
-CREATE TABLE users (id SERIAL PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), passworddigest VARCHAR);
+CREATE TABLE users (id SERIAL PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR, password_digest VARCHAR);

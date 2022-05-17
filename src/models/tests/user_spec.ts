@@ -15,39 +15,45 @@ describe("Test for User Model", () => {
     expect(store.create).toBeDefined();
   });
 
-  it("create method should insert a new product into a product table", async () => {
-    const result = await store.create({
+  it("should have a authenticate method", () => {
+    expect(store.authenticate).toBeDefined();
+  });
+
+  it("create method should insert a new user into the users table", async () => {
+    const user = {
       firstname: "Max",
       lastname: "Musterman",
-      passworddigest: "12345",
-    });
+      email: "first@gmail.com",
+      password: "1234",
+    };
+    const result = await store.create(user);
     expect(result).toEqual({
-      id: 1,
-      firstname: "Max",
-      lastname: "Musterman",
-      passworddigest: "12345",
+      id: result.id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      password_digest: result.password_digest,
     });
   });
 
-  it("index method should return an array of products", async () => {
+  it("index method should return an array of users", async () => {
     const result = await store.index();
-    expect(result).toEqual([
-      {
-        id: 1,
-        firstname: "Max",
-        lastname: "Musterman",
-        passworddigest: "12345",
-      },
-    ]);
+    expect(result).not.toBe([]);
   });
 
-  it("show method should return a product with given id", async () => {
+  it("show method should return a user with a given id", async () => {
     const result = await store.show(1);
     expect(result).toEqual({
       id: 1,
-      firstname: "Max",
-      lastname: "Musterman",
-      passworddigest: "12345",
+      firstname: result.firstname,
+      lastname: result.lastname,
+      email: result.email,
+      password_digest: result.password_digest,
     });
+  });
+
+  it("should authenticate a given user", async () => {
+    const result = await store.authenticate("first@gmail.com", "1234");
+    expect(result).not.toEqual(null);
   });
 });
