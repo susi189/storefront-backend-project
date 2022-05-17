@@ -36,3 +36,5 @@ SALT_ROUNDS=10
 TOKEN_SECRET=mysecret
 
 ```
+
+NOTE for setup with docker: while setting up the project with docker, somehow I had to name the POSTGRES_DB=test_db instead of POSTGRES_DB=shopping otherwise I would have issues with connecting to postgres
