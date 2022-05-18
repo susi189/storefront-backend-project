@@ -29,11 +29,7 @@ const create = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const addProduct = async (req: express.Request, res: express.Response) => {
-  const quantity: number = parseInt(req.body.quantity);
-  const orderId: number = parseInt(req.params.id);
-  const productId: number = parseInt(req.body.productId);
-
+const selectOrders = async (req: express.Request, res: express.Response) => {
   try {
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(" ")[1];
@@ -45,8 +41,8 @@ const addProduct = async (req: express.Request, res: express.Response) => {
   }
 
   try {
-    const added = await store.addProduct(orderId, quantity, productId);
-    res.json(added);
+    const currentOrders = await store.selectOrders(req.body.id);
+    res.json(currentOrders);
   } catch (err) {
     res.status(400);
     res.json(err);
@@ -55,7 +51,7 @@ const addProduct = async (req: express.Request, res: express.Response) => {
 
 const orderRoutes = (app: express.Application) => {
   app.post("/orders", create);
-  app.post("/orders/:id/products", addProduct);
+  app.get("/orders/users/:uid/current", selectOrders);
 };
 
 export default orderRoutes;

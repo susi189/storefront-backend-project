@@ -26,16 +26,13 @@ describe("Tests for Orders Handler", () => {
     expect(response.status).toBe(200);
   });
 
-  it("POST /addProducts responds with status 200 with token", async () => {
+  it("GET /selectOrders should respond with status 200 with tocken", async () => {
     const getToken = await request.post("/users").send(testUser);
     const token = getToken.body;
     const response = await request
-      .post("/orders/1/products")
-      .send({
-        quantity: 3,
-        productId: 1,
-      })
+      .get("/orders/users/1/current")
       .set("Authorization", `Bearer ${token}`);
+    console.log(response.body);
     expect(response.status).toBe(200);
   });
 });

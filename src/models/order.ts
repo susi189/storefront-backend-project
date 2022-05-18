@@ -1,7 +1,7 @@
 import client from "../database";
 
 export type Order = {
-  id?: number;
+  id?: number | undefined;
   status: string;
   uid: number;
 };
@@ -24,22 +24,17 @@ export class OrderStore {
     }
   }
 
-  async addProduct(
-    orderId: number,
-    quantity: number,
-    productId: number
-  ): Promise<Order> {
+  async selectOrders(userId: number): Promise<Order[]> {
     try {
       const connect = await client.connect();
-      const sql =
-        "INSERT INTO order_products (oid, quantity, pid) VALUES ($1, $2, $3) RETURNING *";
-      const result = await connect.query(sql, [orderId, quantity, productId]);
-      const order = result.rows[0];
+      const sql = "SELECT*FROM orders WHERE uid=($1) AND status=active";
+      const result = await connect.query(sql, [userId]);
+      const orders = result.rows[0];
       connect.release();
-      return order;
+      return orders;
     } catch (err) {
       throw new Error(
-        `Could not add product ${productId} to order ${orderId}. Error: ${err}`
+        `Could not find orders for user ${userId}. Error: ${err}`
       );
     }
   }

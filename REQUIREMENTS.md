@@ -30,7 +30,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - Current Order by user (args: user id)[token required]
   POST http://localhost:3000/orders/
-  POST http://localhost:3000/orders/id/products
+  GET http://localhost:3000/orders/id/products
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
@@ -40,7 +40,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 Schema | Name | Type | Owner  
 --------+----------------+-------+----------
 public | migrations | table | postgres
-public | order_products | table | postgres
 public | orders | table | postgres
 public | products | table | postgres
 public | users | table | postgres
@@ -76,6 +75,8 @@ id | first_name | last_name | password_digest
 - password
 
 #### Orders
+
+CREATE TABLE order_products (id SERIAL PRIMARY KEY, quantity integer, oid integer REFERENCES orders(id), pid integer REFERENCES products(id));
 
 shopping=# SELECT \* FROM orders;
 id | status | uid
