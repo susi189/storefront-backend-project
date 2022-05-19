@@ -41,7 +41,7 @@ const create = async (req: express.Request, res: express.Response) => {
 
 const show = async (req: express.Request, res: express.Response) => {
   try {
-    const product = await store.show(req.body.id);
+    const product = await store.show(req.params.id);
     res.json(product);
   } catch (err) {
     res.json(err);

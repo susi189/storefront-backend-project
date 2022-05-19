@@ -25,7 +25,7 @@ export class UserStore {
       throw new Error(`Could not get user information. ERROR: ${err}`);
     }
   }
-  async show(id: number): Promise<User> {
+  async show(id: string): Promise<User> {
     try {
       const connect = await client.connect();
       const sql = "SELECT * FROM users WHERE id=($1)";

@@ -24,11 +24,11 @@ export class OrderStore {
     }
   }
 
-  async selectOrders(userId: number): Promise<Order[]> {
+  async selectOrders(userId: string, status: string): Promise<Order[]> {
     try {
       const connect = await client.connect();
-      const sql = "SELECT*FROM orders WHERE uid=($1) AND status=active";
-      const result = await connect.query(sql, [userId]);
+      const sql = "SELECT*FROM orders WHERE uid=($1) AND status=($2)";
+      const result = await connect.query(sql, [userId, status]);
       const orders = result.rows[0];
       connect.release();
       return orders;

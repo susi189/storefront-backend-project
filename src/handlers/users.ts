@@ -53,7 +53,7 @@ const show = async (req: express.Request, res: express.Response) => {
   }
 
   try {
-    const user = await store.show(req.body.id);
+    const user = await store.show(req.params.id);
     res.json(user);
   } catch (err) {
     res.status(400);

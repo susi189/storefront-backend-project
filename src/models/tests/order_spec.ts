@@ -24,7 +24,7 @@ describe("Test for Order Model", () => {
   });
 
   it("selectOrders should return orders by user", async () => {
-    const result = await store.selectOrders(1);
+    const result = await store.selectOrders("1", "active");
     expect(result).not.toEqual([]);
   });
 });

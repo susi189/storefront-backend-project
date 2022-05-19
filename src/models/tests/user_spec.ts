@@ -42,7 +42,7 @@ describe("Test for User Model", () => {
   });
 
   it("show method should return a user with a given id", async () => {
-    const result = await store.show(1);
+    const result = await store.show("1");
     expect(result).toEqual({
       id: 1,
       firstname: result.firstname,

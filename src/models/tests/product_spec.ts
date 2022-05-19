@@ -33,7 +33,7 @@ describe("Test for Product Model", () => {
   });
 
   it("show method should return a product with given id", async () => {
-    const result = await store.show(2);
+    const result = await store.show("2");
     expect(result).toEqual({
       id: 2,
       name: "my product",

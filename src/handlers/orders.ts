@@ -41,7 +41,10 @@ const selectOrders = async (req: express.Request, res: express.Response) => {
   }
 
   try {
-    const currentOrders = await store.selectOrders(req.body.id);
+    const currentOrders = await store.selectOrders(
+      req.params.id,
+      req.params.active
+    );
     res.json(currentOrders);
   } catch (err) {
     res.status(400);
@@ -51,7 +54,7 @@ const selectOrders = async (req: express.Request, res: express.Response) => {
 
 const orderRoutes = (app: express.Application) => {
   app.post("/orders", create);
-  app.get("/orders/users/:uid/current", selectOrders);
+  app.get("/orders/users/:uid/:status", selectOrders);
 };
 
 export default orderRoutes;

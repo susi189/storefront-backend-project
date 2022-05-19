@@ -30,9 +30,8 @@ describe("Tests for Orders Handler", () => {
     const getToken = await request.post("/users").send(testUser);
     const token = getToken.body;
     const response = await request
-      .get("/orders/users/1/current")
+      .get("/orders/users/1/active")
       .set("Authorization", `Bearer ${token}`);
-    console.log(response.body);
     expect(response.status).toBe(200);
   });
 });
