@@ -1,4 +1,4 @@
-#Storefront Backend
+# Storefront Backend
 
 This project is part of the Full Stack Nanodegree Program at Udacity. In this project I build a backend for a store based on given [requirements](https://github.com/susi189/storefront-backend-project/blob/master/REQUIREMENTS.md). Here I focus mainly on:
 
@@ -6,7 +6,7 @@ This project is part of the Full Stack Nanodegree Program at Udacity. In this pr
 - Working with Databases; here PostgreSQL.
 - Unit testing
 
-##Technical overview
+## Technical overview
 
 - Languages: Typescript
 - Libraries:
@@ -19,13 +19,13 @@ This project is part of the Full Stack Nanodegree Program at Udacity. In this pr
   -- jasmine from npm for testing
 - Docker to access the database
 
-##Setup
+## Setup
 
 To be able to run this project you need to have [Node.js](https://nodejs.org/en/download/) installed on your local machine.
 
 Then run `npm install` to automatically install all the dependencies.
 
-###Database
+### Database
 
 To be able to access the database you need to have PostgreSQL installed locally, or access the postgres database via Docker. In this project I used Docker based on the docker-compose.yml:
 
@@ -47,7 +47,7 @@ volumes:
 
 ```
 
-###Environment variables
+### Environment variables
 
 As it is a good practice not to expose the .env file, it was added to .gitignore file. However as this is a practice project I provided the environment variables here:
 
@@ -64,6 +64,7 @@ TOKEN_SECRET=mysecret
 
 ```
 
-###Scripts:
+### Scripts:
+
 npm test - for testing
 npm start - for starting a server
