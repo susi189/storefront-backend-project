@@ -8,16 +8,18 @@ This project is part of the Full Stack Nanodegree Program at Udacity. In this pr
 
 ## Technical overview
 
-- Languages: Typescript
-- Libraries:
-  -- Postgres for the database
-  -- Node/Express for the application logic
-  -- dotenv from npm for managing environment variables
-  -- db-migrate from npm for migrations
-  -- jsonwebtoken from npm for working with JWTs
-  -- bcrypt for password hashing
-  -- jasmine from npm for testing
-- Docker to access the database
+1. Languages: Typescript
+2. Libraries:
+
+- Postgres for the database
+- Node/Express for the application logic
+- dotenv from npm for managing environment variables
+- db-migrate from npm for migrations
+- jsonwebtoken from npm for working with JWTs
+- bcrypt for password hashing
+- jasmine from npm for testing
+
+3. Docker to access the database
 
 ## Setup
 
@@ -66,5 +68,5 @@ TOKEN_SECRET=mysecret
 
 ### Scripts:
 
-npm test - for testing
-npm start - for starting a server
+- npm test - for testing
+- npm start - for starting a server
