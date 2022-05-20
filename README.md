@@ -71,4 +71,6 @@ TOKEN_SECRET=mysecret
 - npm test - for testing
 - npm start - for starting a server
 
+## More Information
+
 For more detailed information about this project check out the [REQUIREMENTS.md file](https://github.com/susi189/storefront-backend-project/blob/master/REQUIREMENTS.md)
