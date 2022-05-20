@@ -62,9 +62,7 @@ const show = async (req: express.Request, res: express.Response) => {
 };
 
 const userRoutes = (app: express.Application) => {
-  app.get("/users", index);
-  app.post("/users", create);
-  app.get("/users/:id", show);
+  √;
 };
 
 export default userRoutes;

@@ -30,28 +30,33 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - Current Order by user (args: user id)[token required]
   POST http://localhost:3000/orders/
-  GET http://localhost:3000/orders/id/products
+  GET http://localhost:3000/orders/users/:uid/:status
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
 
-             List of relations
+List of relations:
 
-Schema | Name | Type | Owner  
+```
+Schema | Name | Type | Owner
 --------+----------------+-------+----------
 public | migrations | table | postgres
 public | orders | table | postgres
 public | products | table | postgres
 public | users | table | postgres
 
+```
+
 #### Product
 
+```
 CREATE TABLE products (id SERIAL PRIMARY KEY, name VARCHAR(100), price decimal);
 
 shopping=# SELECT \* FROM products;
 id | name | price
 ----+------+-------
 (0 rows)
+```
 
 - id
 - name
@@ -62,12 +67,13 @@ id | name | price
 
 ```
 CREATE TABLE users (id SERIAL PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR, password_digest VARCHAR);
-```
 
 shopping=# SELECT \* FROM users;
 id | first_name | last_name | password_digest
 ----+------------+-----------+-----------------
 (0 rows)
+
+```
 
 - id
 - firstName
@@ -76,6 +82,7 @@ id | first_name | last_name | password_digest
 
 #### Orders
 
+```
 CREATE TABLE order_products (id SERIAL PRIMARY KEY, quantity integer, oid integer REFERENCES orders(id), pid integer REFERENCES products(id));
 
 shopping=# SELECT \* FROM orders;
@@ -87,6 +94,7 @@ shopping=# SELECT \* FROM order_products;
 id | quantity | oid | pid
 ----+----------+-----+-----
 (0 rows)
+```
 
 - id
 - id of each product in the order
