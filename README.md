@@ -1,8 +1,33 @@
-**Set up information**
+#Storefront Backend
 
-_Database:_
+This project is part of the Full Stack Nanodegree Program at Udacity. In this project I build a backend for a store based on given [requirements](https://github.com/susi189/storefront-backend-project/blob/master/REQUIREMENTS.md). Here I focus mainly on:
 
-- This project is using Docker based on the docker-compose.yml (included in the project)
+- Building a RESTful API with Node.js/Express.
+- Working with Databases; here PostgreSQL.
+- Unit testing
+
+##Technical overview
+
+- Languages: Typescript
+- Libraries:
+  -- Postgres for the database
+  -- Node/Express for the application logic
+  -- dotenv from npm for managing environment variables
+  -- db-migrate from npm for migrations
+  -- jsonwebtoken from npm for working with JWTs
+  -- bcrypt for password hashing
+  -- jasmine from npm for testing
+- Docker to access the database
+
+##Setup
+
+To be able to run this project you need to have [Node.js](https://nodejs.org/en/download/) installed on your local machine.
+
+Then run `npm install` to automatically install all the dependencies.
+
+###Database
+
+To be able to access the database you need to have PostgreSQL installed locally, or access the postgres database via Docker. In this project I used Docker based on the docker-compose.yml:
 
 ```
 version: "3.9"
@@ -22,7 +47,9 @@ volumes:
 
 ```
 
-- Environment variables
+###Environment variables
+
+As it is a good practice not to expose the .env file, it was added to .gitignore file. However as this is a practice project I provided the environment variables here:
 
 ```
 POSTGRES_HOST=127.0.0.1
@@ -37,10 +64,6 @@ TOKEN_SECRET=mysecret
 
 ```
 
-NOTE for setup with docker: while setting up the project with docker, somehow I had to name the POSTGRES_DB=test_db instead of POSTGRES_DB=shopping otherwise I would have issues with connecting to postgres
-
-_Scripts:_
+###Scripts:
 npm test - for testing
 npm start - for starting a server
-
-NOTE to test: I came across issues with test script, the database was not dropped after successful test, this is why I dropped the DB (DROP DATABASE shopping_test;) manually and created it manually before starting a new round of tests (CREATE DATABASE shopping_test;)
