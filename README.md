@@ -1,10 +1,10 @@
-# Storefront Backend
+# Backend for a Store - Practice project
 
-This project is part of the Full Stack Nanodegree Program at Udacity. In this project I build a backend for a store based on given [requirements](https://github.com/susi189/storefront-backend-project/blob/master/REQUIREMENTS.md). Here I focus mainly on:
+This project is part of the Full Stack Nanodegree Program at Udacity. In this project I built a backend for a store based on given [requirements](https://github.com/susi189/storefront-backend-project/blob/master/REQUIREMENTS.md). Here I focus mainly on:
 
 - Building a RESTful API with Node.js/Express.
-- Working with Databases; here PostgreSQL.
-- Unit testing
+- Working with Databases: specifically PostgreSQL.
+- Unit testing with Jasimine and supertest
 
 ## Technical overview
 
@@ -51,18 +51,18 @@ volumes:
 
 ### Environment variables
 
-As it is a good practice not to expose the .env file, it was added to .gitignore file. However as this is a practice project I provided the environment variables here:
+NOTE: As it is a good practice **not** to expose the .env file, it was added to .gitignore file. However as this is a practice project I provided exapmles of environment variables used in this project:
 
 ```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=shopping
 POSTGRES_TEST_DB=shopping_test
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=pasword123
+POSTGRES_USER=testUser
+POSTGRES_PASSWORD=exapmlePassword
 ENV=test // OR ENV=dev
 BCRYPT_PASSWORD=udacity
 SALT_ROUNDS=10
-TOKEN_SECRET=mysecret
+TOKEN_SECRET=testsecret
 
 ```
 
